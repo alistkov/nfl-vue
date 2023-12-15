@@ -1,10 +1,12 @@
 <script setup lang="ts">
-
+import TheHeader from '@/components/TheHeader.vue'
 </script>
 
 <template>
-  <h1>NFL app</h1>
-  <RouterView />
+  <TheHeader />
+  <main class="main">
+    <RouterView />
+  </main>
 </template>
 
 <style scoped></style>
