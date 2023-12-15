@@ -6,7 +6,14 @@ export default {
     "./index.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        logo: '48px',
+      },
+      spacing: {
+        header: '10px 20px'
+      }
+    },
     colors: {
       blue: {
         dark: '#013369',
@@ -23,7 +30,7 @@ export default {
     },
     fontFamily: {
       sans: ['Open Sans', 'sans-serif']
-    }
+    },
   },
   plugins: [],
 } satisfies Config
