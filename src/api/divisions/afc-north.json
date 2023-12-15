@@ -1,0 +1,188 @@
+{
+  "get": "standings",
+  "parameters": {
+      "league": "1",
+      "season": "2023",
+      "division": "AFC North"
+  },
+  "errors": [],
+  "results": 4,
+  "response": [
+      {
+          "league": {
+              "id": 1,
+              "name": "NFL",
+              "season": 2023,
+              "logo": "https://media-4.api-sports.io/american-football/leagues/1.png",
+              "country": {
+                  "name": "USA",
+                  "code": "US",
+                  "flag": "https://media-4.api-sports.io/flags/us.svg"
+              }
+          },
+          "conference": "American Football Conference",
+          "division": "AFC North",
+          "position": 1,
+          "team": {
+              "id": 5,
+              "name": "Baltimore Ravens",
+              "logo": "https://media-4.api-sports.io/american-football/teams/5.png"
+          },
+          "won": 10,
+          "lost": 3,
+          "ties": 0,
+          "points": {
+              "for": 361,
+              "against": 218,
+              "difference": 143
+          },
+          "records": {
+              "home": "5-2",
+              "road": "5-1",
+              "conference": "6-3",
+              "division": "3-2"
+          },
+          "streak": "W3",
+          "ncaa_conference": {
+              "won": null,
+              "lost": null,
+              "points": {
+                  "for": null,
+                  "against": null
+              }
+          }
+      },
+      {
+          "league": {
+              "id": 1,
+              "name": "NFL",
+              "season": 2023,
+              "logo": "https://media-4.api-sports.io/american-football/leagues/1.png",
+              "country": {
+                  "name": "USA",
+                  "code": "US",
+                  "flag": "https://media-4.api-sports.io/flags/us.svg"
+              }
+          },
+          "conference": "American Football Conference",
+          "division": "AFC North",
+          "position": 2,
+          "team": {
+              "id": 9,
+              "name": "Cleveland Browns",
+              "logo": "https://media-4.api-sports.io/american-football/teams/9.png"
+          },
+          "won": 8,
+          "lost": 5,
+          "ties": 0,
+          "points": {
+              "for": 289,
+              "against": 272,
+              "difference": 17
+          },
+          "records": {
+              "home": "6-1",
+              "road": "2-4",
+              "conference": "6-3",
+              "division": "3-2"
+          },
+          "streak": "W1",
+          "ncaa_conference": {
+              "won": null,
+              "lost": null,
+              "points": {
+                  "for": null,
+                  "against": null
+              }
+          }
+      },
+      {
+          "league": {
+              "id": 1,
+              "name": "NFL",
+              "season": 2023,
+              "logo": "https://media-4.api-sports.io/american-football/leagues/1.png",
+              "country": {
+                  "name": "USA",
+                  "code": "US",
+                  "flag": "https://media-4.api-sports.io/flags/us.svg"
+              }
+          },
+          "conference": "American Football Conference",
+          "division": "AFC North",
+          "position": 3,
+          "team": {
+              "id": 22,
+              "name": "Pittsburgh Steelers",
+              "logo": "https://media-4.api-sports.io/american-football/teams/22.png"
+          },
+          "won": 7,
+          "lost": 6,
+          "ties": 0,
+          "points": {
+              "for": 210,
+              "against": 250,
+              "difference": -40
+          },
+          "records": {
+              "home": "4-4",
+              "road": "3-2",
+              "conference": "5-4",
+              "division": "3-1"
+          },
+          "streak": "L2",
+          "ncaa_conference": {
+              "won": null,
+              "lost": null,
+              "points": {
+                  "for": null,
+                  "against": null
+              }
+          }
+      },
+      {
+          "league": {
+              "id": 1,
+              "name": "NFL",
+              "season": 2023,
+              "logo": "https://media-4.api-sports.io/american-football/leagues/1.png",
+              "country": {
+                  "name": "USA",
+                  "code": "US",
+                  "flag": "https://media-4.api-sports.io/flags/us.svg"
+              }
+          },
+          "conference": "American Football Conference",
+          "division": "AFC North",
+          "position": 4,
+          "team": {
+              "id": 10,
+              "name": "Cincinnati Bengals",
+              "logo": "https://media-4.api-sports.io/american-football/teams/10.png"
+          },
+          "won": 7,
+          "lost": 6,
+          "ties": 0,
+          "points": {
+              "for": 280,
+              "against": 287,
+              "difference": -7
+          },
+          "records": {
+              "home": "4-3",
+              "road": "3-3",
+              "conference": "3-6",
+              "division": "0-4"
+          },
+          "streak": "W2",
+          "ncaa_conference": {
+              "won": null,
+              "lost": null,
+              "points": {
+                  "for": null,
+                  "against": null
+              }
+          }
+      }
+  ]
+}
