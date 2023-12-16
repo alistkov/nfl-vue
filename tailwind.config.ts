@@ -12,6 +12,9 @@ export default {
       },
       spacing: {
         container: '10px 20px'
+      },
+      width: {
+        container: '1440px'
       }
     },
     colors: {
