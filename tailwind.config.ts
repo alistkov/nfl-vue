@@ -29,7 +29,8 @@ export default {
         mid: '#eee',
         light: '#fafafa'
       },
-      textColor: '#333'
+      textColor: '#333',
+      transparent: 'transparent'
     },
     fontFamily: {
       sans: ['Open Sans', 'sans-serif']
