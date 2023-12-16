@@ -11,7 +11,7 @@ export default {
         logo: '48px',
       },
       spacing: {
-        header: '10px 20px'
+        container: '10px 20px'
       }
     },
     colors: {
