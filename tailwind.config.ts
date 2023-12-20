@@ -7,30 +7,20 @@ export default {
   ],
   theme: {
     extend: {
-      maxWidth: {
-        logo: '48px',
+      colors: {
+        blue: {
+          dark: '#013369',
+          light: '#1B48E0'
+        },
+        dark: '#151515',
+        gray: {
+          dark: '#ccc',
+          mid: '#eee',
+          light: '#fafafa'
+        },
+        textColor: '#333',
+        transparent: 'transparent'
       },
-      spacing: {
-        container: '10px 20px'
-      },
-      width: {
-        container: '1440px'
-      }
-    },
-    colors: {
-      blue: {
-        dark: '#013369',
-        light: '#1B48E0'
-      },
-      white: '#fff',
-      dark: '#151515',
-      gray: {
-        dark: '#ccc',
-        mid: '#eee',
-        light: '#fafafa'
-      },
-      textColor: '#333',
-      transparent: 'transparent'
     },
     fontFamily: {
       sans: ['Open Sans', 'sans-serif']

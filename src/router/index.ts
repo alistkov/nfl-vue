@@ -25,7 +25,8 @@ const router = createRouter({
       name: 'games',
       component: GamesView
     },
-  ]
+  ],
+  linkActiveClass: 'border-white',
 })
 
 export default router

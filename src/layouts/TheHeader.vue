@@ -3,8 +3,8 @@ import Logo from '@/assets/svg/logo.svg';
 </script>
 
 <template>
-  <header class="header bg-blue-dark p-container flex items-center">
-    <div class="header__logo max-w-logo">
+  <header class="header bg-blue-dark px-[20px] py-[10px] flex items-center">
+    <div class="header__logo max-w-[48px]">
       <img :src="Logo" alt="">
     </div>
     <nav class="header__nav ml-auto">
