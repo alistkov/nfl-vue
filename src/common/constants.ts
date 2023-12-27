@@ -5,3 +5,8 @@ export const MAIN_NAVIGATION: Link[] = [
   { label: 'Games', routeName: 'games' },
   { label: 'Teams', routeName: 'teams' },
 ];
+
+export const STANDINGS_NAVIGATION: Link[] = [
+  { label: 'Divisions', routeName: 'divisions-standings' },
+  { label: 'Conferences', routeName: 'conferences-standings' },
+];
