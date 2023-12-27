@@ -4,6 +4,7 @@ const TeamsView = () => import('@/views/TeamsView.vue')
 const GamesView = () => import('@/views/GamesView.vue')
 const DivisionsStandings = () => import('@/modules/standings/components/DivisionsStandings.vue')
 const ConferencesStandings = () => import('@/modules/standings/components/ConferencesStandings.vue')
+const PageNotFound = () => import('@/views/NotFoundView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,10 @@ const router = createRouter({
       name: 'games',
       component: GamesView
     },
+    {
+      path: "/:pathMatch(.*)*",
+      component: PageNotFound
+    }
   ],
 })
 
