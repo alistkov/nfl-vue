@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import Logo from '@/assets/svg/logo.svg';
+import Logo from '@/assets/images/svg/logo.svg';
 import { MAIN_NAVIGATION } from '@/common/constants';
 </script>
 
