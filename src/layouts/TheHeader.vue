@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 import Logo from '@/assets/svg/logo.svg';
+import { MAIN_NAVIGATION } from '@/common/constants';
 </script>
 
 <template>
@@ -9,22 +10,10 @@ import Logo from '@/assets/svg/logo.svg';
     </div>
     <nav class="header__nav ml-auto">
       <ul class="flex">
-        <li>
-          <RouterLink :to="{ name: 'standings' }"
+        <li v-for="link of MAIN_NAVIGATION" :key="link.label" class="sm:ml-8 ml-3">
+          <RouterLink :to="{ name: link.routeName }"
             class="text-white pb-2 border-b-2 border-transparent hover:border-white transition duration-500 text-sm sm:text-base">
-            Standings
-          </RouterLink>
-        </li>
-        <li class="sm:ml-8 ml-3">
-          <RouterLink :to="{ name: 'games' }"
-            class="text-white pb-2 border-b-2 border-transparent hover:border-white transition duration-500 text-sm sm:text-base">
-            Games
-          </RouterLink>
-        </li>
-        <li class="sm:ml-8 ml-3">
-          <RouterLink :to="{ name: 'teams' }"
-            class="text-white pb-2 border-b-2 border-transparent hover:border-white transition duration-300 text-sm sm:text-base">
-            Teams
+            {{ link.label }}
           </RouterLink>
         </li>
       </ul>
