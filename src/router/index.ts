@@ -41,7 +41,6 @@ const router = createRouter({
       component: GamesView
     },
   ],
-  linkActiveClass: 'border-white',
 })
 
 export default router
