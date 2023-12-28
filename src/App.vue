@@ -4,7 +4,7 @@ import TheFooter from '@/layouts/TheFooter.vue'
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen bg-gray-mid">
     <TheHeader />
     <main class="main max-w-full mx-auto w-[1400px] py-5 md:py-10 px-5 flex-grow">
       <RouterView />

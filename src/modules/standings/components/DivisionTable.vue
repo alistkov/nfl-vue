@@ -28,57 +28,59 @@ const calculatePtcFromString = (result: string): number => {
 </script>
 
 <template>
-  <table class="w-full">
-    <tr class="text-left font-normal text-xs">
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r-2">{{ props.conference }}
+  <table class="w-full bg-white">
+    <tr class="font-normal text-xs">
+      <th class="text-left font-normal border-b border-gray-mid px-[20px] py-[15px] border-r-2">{{
+        props.conference.toUpperCase() }}
       </th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">W</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">L</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">T</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">PCT</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">PF</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">PA</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">Net Pts</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">Home</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">Road</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">Div</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">Pct</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">Conf</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">Pct</th>
-      <th class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">Strk</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">W</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">L</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">T</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PCT</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PF</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PA</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Net Pts</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Home</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Road</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Div</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Pct</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Conf</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Pct</th>
+      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Strk</th>
     </tr>
-    <tr v-for="team of props.teams" :key="team.team.id" class="text-xs">
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r-2">
+    <tr v-for="(team, index) of props.teams" :key="team.team.id" class="text-xs"
+      :class="{ 'bg-gray-light': (index + 1) % 2 === 0 }">
+      <td class="font-normal border-b border-gray-mid px-[20px] py-[10px] border-r-2">
         <a href="#" class="flex items-center">
           <img :src="team.team.logo" :alt="team.team.name" class="w-[24px] mr-2">
           {{ team.team.name }}
         </a>
       </td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.won }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.lost }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.ties }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ calculatePtc(team.won,
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.won }}</td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.lost }}</td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.ties }}</td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ calculatePtc(team.won,
         team.lost,
         team.ties).toFixed(3) }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.points.for }}
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.points.for }}
       </td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.points.against }}
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.points.against }}
       </td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">{{ team.points.difference
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">{{ team.points.difference
       }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.records.home }}
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.records.home }}
       </td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">{{ team.records.road }}
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">{{ team.records.road }}
       </td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.records.division
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.records.division
       }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">{{
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">{{
         calculatePtcFromString(team.records.division).toFixed(3) }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{
         team.records.conference }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px] border-r">{{
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">{{
         calculatePtcFromString(team.records.conference) }}</td>
-      <td class="text-left font-normal border-b border-gray-dark px-[20px] py-[10px]">{{ team.streak }}</td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">{{ team.streak }}</td>
     </tr>
   </table>
 </template>
