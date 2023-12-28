@@ -47,3 +47,15 @@ export interface Team {
     }
   }
 }
+
+export interface DivisionStandings {
+  "get": string
+  "parameters": {
+    "league": string | number
+    "season": string | number
+    "division": string
+  },
+  "errors": [],
+  "results": number
+  "response": Team[]
+}
