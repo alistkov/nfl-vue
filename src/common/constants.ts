@@ -11,7 +11,7 @@ export const STANDINGS_NAVIGATION: Link[] = [
   { label: 'Conferences', routeName: 'conferences-standings' },
 ];
 
-export const DIVISIONS = [
+export const CONFERENCES = [
   {
     title: 'American Football Conference',
     divisions: [

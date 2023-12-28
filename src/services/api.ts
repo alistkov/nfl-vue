@@ -1,4 +1,4 @@
-import type { DivisionStandings } from '@/common/types';
+import type { Team } from '@/common/types';
 import axios from 'axios';
 
 export class ApiService {
@@ -11,8 +11,10 @@ export class ApiService {
     }
   });
 
-  async getDivisionStandings(league: number, season: number, division: string): Promise<DivisionStandings> {
+  async getDivisionStandings(league: number, season: number, division: string): Promise<Team[]> {
     const response = await this.axiosInstance.get(`${this.baseUrl}/standings`, { params: { league, season, division } });
+    console.log('RESPONSE', response);
+
     return response.data.response;
   }
 }
