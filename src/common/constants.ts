@@ -10,3 +10,24 @@ export const STANDINGS_NAVIGATION: Link[] = [
   { label: 'Divisions', routeName: 'divisions-standings' },
   { label: 'Conferences', routeName: 'conferences-standings' },
 ];
+
+export const DIVISIONS = [
+  {
+    title: 'American Football Conference',
+    divisions: [
+      'AFC East',
+      'AFC North',
+      'AFC South',
+      'AFC West',
+    ]
+  },
+  {
+    title: 'National Football Conference',
+    divisions: [
+      'NFC East',
+      'NFC North',
+      'NFC South',
+      'NFC West',
+    ]
+  }
+];
