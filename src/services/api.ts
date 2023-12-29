@@ -2,9 +2,8 @@ import type { Team } from '@/common/types';
 import axios from 'axios';
 
 export class ApiService {
-  private baseUrl = 'https://v1.american-football.api-sports.io';
-
   private axiosInstance = axios.create({
+    baseURL: 'https://v1.american-football.api-sports.io',
     headers: {
       'x-rapidapi-host': import.meta.env.VITE_API_URL,
       'x-rapidapi-key': import.meta.env.VITE_API_KEY,
@@ -12,9 +11,13 @@ export class ApiService {
   });
 
   async getDivisionStandings(league: number, season: number, division: string): Promise<Team[]> {
-    const response = await this.axiosInstance.get(`${this.baseUrl}/standings`, { params: { league, season, division } });
-    console.log('RESPONSE', response);
+    const response = await this.axiosInstance.get(`/standings`, { params: { league, season, division } });
 
-    return response.data.response;
+    if (response.data.errors.length === 0) {
+      return response.data.response;
+    }
+
+    const message = Object.values(response.data.errors)[0] as string;
+    throw new Error(message)
   }
 }
