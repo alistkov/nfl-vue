@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { ApiService } from '@/services/api';
 import type { Team } from '@/common/types';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 const props = defineProps({
   division: {
@@ -12,6 +12,8 @@ const props = defineProps({
 
 const standings = ref<Team[]>();
 const error = ref<string | null>(null);
+const loaded = ref<boolean>(false);
+const loading = ref<boolean>(false);
 const apiService = new ApiService();
 
 const calculatePtc = (won: number, lost: number, ties: number): number => {
@@ -27,8 +29,8 @@ const calculatePtcFromString = (result: string): number => {
   return calculatePtc(Number(won), Number(lost), Number(ties))
 };
 
-
-onMounted(async () => {
+const getDivisionStandings = async (): Promise<void> => {
+  loading.value = true;
   try {
     standings.value = await apiService.getDivisionStandings(1, 2023, props.division);
   } catch (err) {
@@ -36,8 +38,9 @@ onMounted(async () => {
       error.value = err.message;
     }
   }
-})
-
+  loaded.value = true;
+  loading.value = false;
+};
 </script>
 
 <template>
@@ -46,21 +49,35 @@ onMounted(async () => {
       <th class="text-left font-normal border-b border-gray-mid px-[20px] py-[15px] border-r-2 w-[300px]">{{
         props.division.toUpperCase() }}
       </th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">W</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">L</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">T</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PCT</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PF</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PA</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Net Pts</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Home</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Road</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Div</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Pct</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Conf</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Pct</th>
-      <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Strk</th>
+      <template v-if="loaded">
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">W</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">L</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">T</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PCT</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PF</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">PA</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Net Pts</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Home</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Road</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Div</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Pct</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Conf</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px] border-r">Pct</th>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">Strk</th>
+      </template>
+      <template v-else>
+        <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">
+          <button @click="getDivisionStandings">Show standings</button>
+        </th>
+      </template>
     </tr>
+    <template v-if="loading">
+      <tr>
+        <td class="px-[20px] py-[15px] text-xs text-center" colspan="15">
+          Loading...
+        </td>
+      </tr>
+    </template>
     <template v-if="error">
       <tr>
         <td class="px-[20px] py-[15px] text-xs" colspan="15">
