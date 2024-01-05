@@ -73,7 +73,7 @@ const calculatePtcFromString = (result: string): number => {
       </template>
       <template v-else>
         <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">
-          <button @click="getStandings">Show standings</button>
+          <button @click="getStandings" class="text-blue-light">Show standings</button>
         </th>
       </template>
     </tr>
