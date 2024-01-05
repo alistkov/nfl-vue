@@ -7,8 +7,8 @@ export const MAIN_NAVIGATION: Link[] = [
 ];
 
 export const STANDINGS_NAVIGATION: Link[] = [
-  { label: 'Divisions', routeName: 'divisions-standings' },
-  { label: 'Conferences', routeName: 'conferences-standings' },
+  { label: 'Division', routeName: 'divisions-standings' },
+  { label: 'Conference', routeName: 'conferences-standings' },
 ];
 
 export const CONFERENCES = [
