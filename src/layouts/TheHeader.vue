@@ -5,9 +5,9 @@ import { MAIN_NAVIGATION } from '@/common/constants';
 
 <template>
   <header class="header bg-blue-dark px-[20px] py-[10px] flex items-center">
-    <div class="header__logo max-w-[48px]">
+    <Router-Link :to="{ name: 'home' }" class="block max-w-[48px]">
       <img :src="Logo" alt="">
-    </div>
+    </Router-Link>
     <nav class="header__nav ml-auto">
       <ul class="flex">
         <li v-for="link of MAIN_NAVIGATION" :key="link.label" class="sm:ml-8 ml-3">
