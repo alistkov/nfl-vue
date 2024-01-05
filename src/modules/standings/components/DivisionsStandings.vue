@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import DivisionTable from '@/modules/standings/components/DivisionTable.vue';
+import StandingsTable from '@/modules/standings/components/StandingsTable.vue';
 import { CONFERENCES } from '@/common/constants';
 </script>
 
@@ -8,7 +8,7 @@ import { CONFERENCES } from '@/common/constants';
     <div class="bg-gray-light text-sm py-3.5 px-[20px] border-b border-bg-gray-dark">{{ conference.title.toUpperCase() }}
     </div>
     <div v-for="division of conference.divisions" :key="division">
-      <DivisionTable :division="division" />
+      <StandingsTable standings-type="division" :standings-title="division" />
     </div>
   </div>
 </template>

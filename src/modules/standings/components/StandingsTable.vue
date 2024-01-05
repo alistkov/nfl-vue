@@ -1,20 +1,38 @@
-<script setup lang="ts">
-import { ApiService } from '@/services/api'
-import type { Team } from '@/common/types'
-import { ref } from 'vue'
+<script setup lang='ts'>
+import type { Team } from '@/common/types';
+import { ApiService } from '@/services/api';
+import { ref } from 'vue';
 
-const props = defineProps({
-  division: {
-    type: String,
-    required: true
+type PropsType = {
+  standingsTitle: string,
+  standingsType: string,
+}
+
+const props = defineProps<PropsType>();
+
+const standings = ref<Team[]>();
+const error = ref<string | null>(null);
+const loaded = ref<boolean>(false);
+const loading = ref<boolean>(false);
+const apiService = new ApiService();
+
+const getStandings = async (): Promise<void> => {
+  loading.value = true
+  try {
+    standings.value = await apiService.getStandings({
+      league: 1,
+      season: 2023,
+      [props.standingsType]: props.standingsTitle,
+    })
+
+  } catch (err) {
+    if (err instanceof Error) {
+      error.value = err.message
+    }
   }
-})
-
-const standings = ref<Team[]>()
-const error = ref<string | null>(null)
-const loaded = ref<boolean>(false)
-const loading = ref<boolean>(false)
-const apiService = new ApiService()
+  loaded.value = true
+  loading.value = false
+}
 
 const calculatePtc = (won: number, lost: number, ties: number): number => {
   const totalGames = won + lost + ties
@@ -29,25 +47,13 @@ const calculatePtcFromString = (result: string): number => {
   return calculatePtc(Number(won), Number(lost), Number(ties))
 }
 
-const getDivisionStandings = async (): Promise<void> => {
-  loading.value = true
-  try {
-    standings.value = await apiService.getDivisionStandings(1, 2023, props.division)
-  } catch (err) {
-    if (err instanceof Error) {
-      error.value = err.message
-    }
-  }
-  loaded.value = true
-  loading.value = false
-}
 </script>
 
 <template>
   <table class="w-full bg-white mb-4">
     <tr class="font-normal text-xs">
       <th class="text-left font-normal border-b border-gray-mid px-[20px] py-[15px] border-r-2 w-[300px]">
-        {{ props.division.toUpperCase() }}
+        {{ props.standingsTitle.toUpperCase() }}
       </th>
       <template v-if="loaded">
         <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">W</th>
@@ -67,7 +73,7 @@ const getDivisionStandings = async (): Promise<void> => {
       </template>
       <template v-else>
         <th class="font-normal border-b border-gray-mid px-[20px] py-[15px]">
-          <button @click="getDivisionStandings">Show standings</button>
+          <button @click="getStandings">Show standings</button>
         </th>
       </template>
     </tr>
