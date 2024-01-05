@@ -10,11 +10,14 @@ export class ApiService {
     }
   });
 
-  async getDivisionStandings(league: number, season: number, division: string): Promise<Team[]> {
-    const response = await this.axiosInstance.get(`/standings`, { params: { league, season, division } });
+  async getStandings(params: any): Promise<Team[]> {
+    const response = await this.axiosInstance.get(
+      `/standings`,
+      { params }
+    );
 
     if (response.data.errors.length === 0) {
-      return response.data.response;
+      return await response.data.response;
     }
 
     const message = Object.values(response.data.errors)[0] as string;
