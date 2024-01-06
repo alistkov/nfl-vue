@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { ApiService } from '@/services/api';
 import type { TeamInfo } from '@/common/types';
+import LoaderComponent from '@/common/components/LoaderComponent.vue'
 
 const apiService = new ApiService();
 const teams = ref<TeamInfo[]>();
@@ -28,7 +29,7 @@ onMounted(async () => {
 
 <template>
   <div v-if="loading">
-    Loading...
+    <LoaderComponent />
   </div>
   <div v-if="error">
     {{ error }}

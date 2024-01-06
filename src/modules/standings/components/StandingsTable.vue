@@ -1,7 +1,8 @@
 <script setup lang='ts'>
+import { ref } from 'vue';
 import type { TeamStandings } from '@/common/types';
 import { ApiService } from '@/services/api';
-import { ref } from 'vue';
+import LoaderComponent from '@/common/components/LoaderComponent.vue'
 
 type PropsType = {
   standingsTitle: string,
@@ -111,7 +112,9 @@ const sortByPtc = (firstTeam: TeamStandings, secondTeam: TeamStandings): -1 | 0 
     </tr>
     <template v-if="loading">
       <tr>
-        <td class="px-[20px] py-[15px] text-xs text-center" colspan="15">Loading...</td>
+        <td class="px-[20px] py-[15px] text-xs text-center" colspan="15">
+          <LoaderComponent />
+        </td>
       </tr>
     </template>
     <template v-if="error">
