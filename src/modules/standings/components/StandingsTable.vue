@@ -8,9 +8,14 @@ type PropsType = {
   standingsType: string,
 }
 
+type ReduceAccumulator = {
+  winners: Team[],
+  others: Team[]
+}
+
 const props = defineProps<PropsType>();
 
-const standings = ref<Team[]>();
+const standings = ref<Team[]>([]);
 const error = ref<string | null>(null);
 const loaded = ref<boolean>(false);
 const loading = ref<boolean>(false);
@@ -19,11 +24,29 @@ const apiService = new ApiService();
 const getStandings = async (): Promise<void> => {
   loading.value = true
   try {
-    standings.value = await apiService.getStandings({
+    const response = await apiService.getStandings({
       league: 1,
       season: 2023,
       [props.standingsType]: props.standingsTitle,
-    })
+    });
+
+    if (props.standingsType === 'conference') {
+      const teams = response.reduce((acc: ReduceAccumulator, team: Team): ReduceAccumulator => {
+        if (team.position === 1) {
+          return {
+            ...acc,
+            winners: [...acc.winners, team].sort(sortByPtc)
+          }
+        }
+        return {
+          ...acc,
+          others: [...acc.others, team].sort(sortByPtc)
+        }
+      }, { winners: [], others: [] });
+      standings.value = [...teams.winners, ...teams.others];
+    } else {
+      standings.value = response;
+    }
 
   } catch (err) {
     if (err instanceof Error) {
@@ -45,6 +68,15 @@ const calculatePtc = (won: number, lost: number, ties: number): number => {
 const calculatePtcFromString = (result: string): number => {
   const [won = 0, lost = 0, ties = 0] = result.split('-')
   return calculatePtc(Number(won), Number(lost), Number(ties))
+}
+
+const sortByPtc = (firstTeam: Team, secondTeam: Team): -1 | 0 | 1 => {
+  const firstTeamPtc = calculatePtc(firstTeam.won, firstTeam.lost, firstTeam.ties);
+  const secondTeamPtc = calculatePtc(secondTeam.won, secondTeam.lost, secondTeam.ties);
+  if (firstTeamPtc === secondTeamPtc) {
+    return 0;
+  }
+  return firstTeamPtc > secondTeamPtc ? -1 : 1;
 }
 
 </script>
