@@ -10,26 +10,8 @@ export class ApiService {
     }
   });
 
-  async getStandings(params: any): Promise<TeamStandings[]> {
-    const response = await this.axiosInstance.get(
-      `/standings`,
-      { params }
-    );
-
-    if (response.data.errors.length === 0) {
-      return await response.data.response;
-    }
-
-    const message = Object.values(response.data.errors)[0] as string;
-    throw new Error(message)
-  }
-
-  async getTeams(params: { league: number, season: number }): Promise<TeamInfo[]> {
-    const response = await this.axiosInstance(
-      '/teams',
-      { params }
-    );
-
+  async fetchData(path: string, params: any): Promise<TeamInfo[] | TeamStandings[]> {
+    const response = await this.axiosInstance.get(path, { params });
     if (response.data.errors.length === 0) {
       return await response.data.response;
     }

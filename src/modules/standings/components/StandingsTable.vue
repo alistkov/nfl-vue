@@ -26,11 +26,11 @@ const apiService = new ApiService();
 const getStandings = async (): Promise<void> => {
   loading.value = true
   try {
-    const response = await apiService.getStandings({
+    const response = await apiService.fetchData('/standings', {
       league: 1,
       season: 2023,
       [props.standingsType]: props.standingsTitle,
-    });
+    }) as TeamStandings[];
 
     if (props.standingsType === 'conference') {
       const teams = response.reduce((acc: ReduceAccumulator, team: TeamStandings): ReduceAccumulator => {

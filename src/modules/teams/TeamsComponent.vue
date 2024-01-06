@@ -13,7 +13,7 @@ const loading = ref<boolean>(false);
 const fetchTeams = async (): Promise<void> => {
   loading.value = true;
   try {
-    const response = await apiService.getTeams({ league: 1, season: 2023 });
+    const response = await apiService.fetchData('/teams', { league: 1, season: 2023 }) as TeamInfo[];
     teams.value = response.filter((team: TeamInfo) => team.code !== null);
   } catch (err) {
     if (err instanceof Error) {
