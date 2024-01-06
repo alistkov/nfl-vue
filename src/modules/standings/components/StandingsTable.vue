@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { Team } from '@/common/types';
+import type { TeamStandings } from '@/common/types';
 import { ApiService } from '@/services/api';
 import { ref } from 'vue';
 
@@ -9,13 +9,13 @@ type PropsType = {
 }
 
 type ReduceAccumulator = {
-  winners: Team[],
-  others: Team[]
+  winners: TeamStandings[],
+  others: TeamStandings[]
 }
 
 const props = defineProps<PropsType>();
 
-const standings = ref<Team[]>([]);
+const standings = ref<TeamStandings[]>([]);
 const error = ref<string | null>(null);
 const loaded = ref<boolean>(false);
 const loading = ref<boolean>(false);
@@ -31,7 +31,7 @@ const getStandings = async (): Promise<void> => {
     });
 
     if (props.standingsType === 'conference') {
-      const teams = response.reduce((acc: ReduceAccumulator, team: Team): ReduceAccumulator => {
+      const teams = response.reduce((acc: ReduceAccumulator, team: TeamStandings): ReduceAccumulator => {
         if (team.position === 1) {
           return {
             ...acc,
@@ -70,7 +70,7 @@ const calculatePtcFromString = (result: string): number => {
   return calculatePtc(Number(won), Number(lost), Number(ties))
 }
 
-const sortByPtc = (firstTeam: Team, secondTeam: Team): -1 | 0 | 1 => {
+const sortByPtc = (firstTeam: TeamStandings, secondTeam: TeamStandings): -1 | 0 | 1 => {
   const firstTeamPtc = calculatePtc(firstTeam.won, firstTeam.lost, firstTeam.ties);
   const secondTeamPtc = calculatePtc(secondTeam.won, secondTeam.lost, secondTeam.ties);
   if (firstTeamPtc === secondTeamPtc) {

@@ -1,4 +1,4 @@
-import type { Team } from '@/common/types';
+import type { TeamStandings } from '@/common/types';
 import axios from 'axios';
 
 export class ApiService {
@@ -10,7 +10,7 @@ export class ApiService {
     }
   });
 
-  async getStandings(params: any): Promise<Team[]> {
+  async getStandings(params: any): Promise<TeamStandings[]> {
     const response = await this.axiosInstance.get(
       `/standings`,
       { params }

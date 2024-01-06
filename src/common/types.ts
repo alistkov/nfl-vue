@@ -3,7 +3,7 @@ export interface Link {
   routeName: string
 }
 
-export interface Team {
+export interface TeamStandings {
   "league": {
     "id": number
     "name": string
@@ -46,16 +46,4 @@ export interface Team {
       "against": null
     }
   }
-}
-
-export interface DivisionStandings {
-  "get": string
-  "parameters": {
-    "league": string | number
-    "season": string | number
-    "division": string
-  },
-  "errors": [],
-  "results": number
-  "response": Team[]
 }
