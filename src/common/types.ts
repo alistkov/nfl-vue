@@ -47,3 +47,20 @@ export interface TeamStandings {
     }
   }
 }
+
+export interface TeamInfo {
+  id: number
+  name: string
+  code: string
+  city: string
+  coach: string
+  owner: string
+  stadium: string
+  established: number
+  logo: string
+  country: {
+    name: string
+    code: string
+    flag: string
+  }
+}
