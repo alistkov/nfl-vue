@@ -111,75 +111,69 @@ const sortByPtc = (firstTeam: TeamStandings, secondTeam: TeamStandings): -1 | 0 
         </th>
       </template>
     </tr>
-    <template v-if="loading">
-      <tr>
-        <td class="px-[20px] py-[15px] text-xs text-center" colspan="15">
-          <LoaderComponent />
-        </td>
-      </tr>
-    </template>
-    <template v-if="error">
-      <tr>
-        <td class="px-[20px] py-[15px] text-xs" colspan="15">
-          <ErrorAlert>
-            {{ error }}
-          </ErrorAlert>
-        </td>
-      </tr>
-    </template>
-    <template v-else>
-      <tr v-for="(team, index) of standings" :key="team.team.id" class="text-xs"
-        :class="{ 'bg-gray-light': (index + 1) % 2 === 0 }">
-        <td class="font-normal border-b border-gray-mid px-[20px] py-[10px] border-r-2">
-          <a href="#" class="flex items-center">
-            <img :src="team.team.logo" :alt="team.team.name" class="w-[24px] mr-2" />
-            {{ team.team.name }}
-          </a>
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.won }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.lost }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.ties }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ calculatePtc(team.won, team.lost, team.ties).toFixed(3) }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.points.for }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.points.against }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
-          {{ team.points.difference }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.records.home }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
-          {{ team.records.road }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.records.division }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
-          {{ calculatePtcFromString(team.records.division).toFixed(3) }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.records.conference }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
-          {{ calculatePtcFromString(team.records.conference).toFixed(3) }}
-        </td>
-        <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
-          {{ team.streak }}
-        </td>
-      </tr>
-    </template>
+    <tr v-if="loading">
+      <td class="px-[20px] py-[15px] text-xs text-center" colspan="15">
+        <LoaderComponent />
+      </td>
+    </tr>
+    <tr v-if="error">
+      <td class="px-[20px] py-[15px] text-xs" colspan="15">
+        <ErrorAlert>
+          {{ error }}
+        </ErrorAlert>
+      </td>
+    </tr>
+    <tr v-else v-for="(team, index) of standings" :key="team.team.id" class="text-xs"
+      :class="{ 'bg-gray-light': (index + 1) % 2 === 0 }">
+      <td class="font-normal border-b border-gray-mid px-[20px] py-[10px] border-r-2">
+        <a href="#" class="flex items-center">
+          <img :src="team.team.logo" :alt="team.team.name" class="w-[24px] mr-2" />
+          {{ team.team.name }}
+        </a>
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.won }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.lost }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.ties }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ calculatePtc(team.won, team.lost, team.ties).toFixed(3) }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.points.for }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.points.against }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
+        {{ team.points.difference }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.records.home }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
+        {{ team.records.road }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.records.division }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
+        {{ calculatePtcFromString(team.records.division).toFixed(3) }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.records.conference }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px] border-r">
+        {{ calculatePtcFromString(team.records.conference).toFixed(3) }}
+      </td>
+      <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
+        {{ team.streak }}
+      </td>
+    </tr>
   </table>
 </template>
 
