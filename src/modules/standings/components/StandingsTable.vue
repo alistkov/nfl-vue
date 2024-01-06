@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import type { TeamStandings } from '@/common/types';
 import { ApiService } from '@/services/api';
 import LoaderComponent from '@/common/components/LoaderComponent.vue'
+import ErrorAlert from '@/common/components/ErrorAlert.vue'
 
 type PropsType = {
   standingsTitle: string,
@@ -120,7 +121,9 @@ const sortByPtc = (firstTeam: TeamStandings, secondTeam: TeamStandings): -1 | 0 
     <template v-if="error">
       <tr>
         <td class="px-[20px] py-[15px] text-xs" colspan="15">
-          {{ error }}
+          <ErrorAlert>
+            {{ error }}
+          </ErrorAlert>
         </td>
       </tr>
     </template>

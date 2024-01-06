@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import { ApiService } from '@/services/api';
 import type { TeamInfo } from '@/common/types';
 import LoaderComponent from '@/common/components/LoaderComponent.vue'
+import ErrorAlert from '@/common/components/ErrorAlert.vue';
 
 const apiService = new ApiService();
 const teams = ref<TeamInfo[]>();
@@ -28,12 +29,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="loading">
-    <LoaderComponent />
-  </div>
-  <div v-if="error">
+  <LoaderComponent v-if="loading" />
+  <ErrorAlert v-if="error">
     {{ error }}
-  </div>
+  </ErrorAlert>
   <div class="flex flex-wrap mx-[-10px]">
     <div v-for="team in teams" :key="team.id" class="w-full lg:w-[25%] md:w-[50%] mb-2 px-[10px]">
       <a href="#"
