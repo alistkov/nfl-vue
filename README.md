@@ -17,7 +17,7 @@ This project is designed to develop my skills in Vue (Composition API) and TypeS
 1. Clone repository
 
 ```
-
+https://github.com/alistkov/nfl-vue.git
 ```
 
 2. Install dependencies
