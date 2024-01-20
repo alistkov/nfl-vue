@@ -4,7 +4,7 @@ const TeamsView = () => import('@/views/TeamsView.vue')
 const DivisionsStandings = () => import('@/modules/standings/components/DivisionsStandings.vue')
 const ConferencesStandings = () => import('@/modules/standings/components/ConferencesStandings.vue')
 const PageNotFound = () => import('@/views/NotFoundView.vue')
-const TeamDetailView = () => import('@/views/TeamDetail.vue')
+const TeamDetailView = () => import('@/views/TeamDetailView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

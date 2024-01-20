@@ -17,8 +17,6 @@ const getTeamInfo = async (): Promise<void> => {
   try {
     const response = await apiService.fetchData('teams', { id: route.params.id });
     team.value = response[0];
-    console.log(team.value);
-
   } catch (err) {
     if (err instanceof Error) {
       error.value = err.message
