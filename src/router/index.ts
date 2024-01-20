@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 const StandingsView = () => import('@/views/StandingsView.vue')
 const TeamsView = () => import('@/views/TeamsView.vue')
-const GamesView = () => import('@/views/GamesView.vue')
 const DivisionsStandings = () => import('@/modules/standings/components/DivisionsStandings.vue')
 const ConferencesStandings = () => import('@/modules/standings/components/ConferencesStandings.vue')
 const PageNotFound = () => import('@/views/NotFoundView.vue')
@@ -42,11 +41,6 @@ const router = createRouter({
       path: '/team/:id',
       name: 'team-detail',
       component: TeamDetailView
-    },
-    {
-      path: '/games',
-      name: 'games',
-      component: GamesView
     },
     {
       path: "/:pathMatch(.*)*",
