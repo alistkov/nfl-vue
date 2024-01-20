@@ -35,10 +35,10 @@ onMounted(async () => {
   </ErrorAlert>
   <div class="flex flex-wrap mx-[-10px]">
     <div v-for="team in teams" :key="team.id" class="w-full lg:w-[25%] md:w-[50%] mb-2 px-[10px]">
-      <a href="#"
+      <RouterLink :to="{ name: 'team-detail', params: { id: team.id } }"
         class="block bg-gray-light border border-gray-dark p-2 text-sm hover:text-white hover:bg-blue-light transition-colors duration-300">
         {{ team.name }}
-      </a>
+      </RouterLink>
     </div>
   </div>
 </template>
