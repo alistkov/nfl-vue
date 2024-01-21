@@ -126,10 +126,10 @@ const sortByPtc = (firstTeam: TeamStandings, secondTeam: TeamStandings): -1 | 0 
     <tr v-else v-for="(team, index) of standings" :key="team.team.id" class="text-xs"
       :class="{ 'bg-gray-light': (index + 1) % 2 === 0 }">
       <td class="font-normal border-b border-gray-mid px-[20px] py-[10px] border-r-2">
-        <a href="#" class="flex items-center">
+        <RouterLink :to="{ name: 'team-detail', params: { id: team.team.id } }" class="flex items-center">
           <img :src="team.team.logo" :alt="team.team.name" class="w-[24px] mr-2" />
           {{ team.team.name }}
-        </a>
+        </RouterLink>
       </td>
       <td class="text-center font-normal border-b border-gray-mid px-[20px] py-[10px]">
         {{ team.won }}
