@@ -40,7 +40,7 @@ onMounted(() => {
     </ErrorAlert>
   </div>
   <template v-if="team">
-    <div class="flex items-start">
+    <div class="md:flex items-start">
       <img :src="team.logo" :alt="team.name" class="shrink-0 mr-[40px]">
       <div class="text-[14px]">
         <h1 class="font-bold text-blue-dark text-[20px] mb-[10px]">{{ team.name }} ({{ team.code }})</h1>
